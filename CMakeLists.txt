@@ -19,7 +19,10 @@ FetchContent_MakeAvailable(glfw)
 FetchContent_Declare(iir GIT_REPOSITORY https://github.com/berndporr/iir1) 
 FetchContent_MakeAvailable(iir)
 
-add_compile_options(-O3 -march=native)
+# for linux https://gitlab.kitware.com/cmake/community/-/wikis/doc/tutorials/How-To-Write-Platform-Checks
+if (UNIX AND NOT APPLE)
+  add_compile_options(-O3 -march=native)
+endif()
 
 if (WIN32)
   set(CMAKE_USE_SCHANNEL ON)
