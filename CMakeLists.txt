@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.11.0)
 project(implot_demos VERSION 0.1.0)
+set(CMAKE_CXX_STANDARD 17)
 
 ###############################################################################
 # 3RD PARTY LIBS
@@ -18,7 +19,8 @@ FetchContent_MakeAvailable(glfw)
 FetchContent_Declare(iir GIT_REPOSITORY https://github.com/berndporr/iir1) 
 FetchContent_MakeAvailable(iir)
 
-if (LINUX)
+# for linux https://gitlab.kitware.com/cmake/community/-/wikis/doc/tutorials/How-To-Write-Platform-Checks
+if (UNIX AND NOT APPLE)
   add_compile_options(-O3 -march=native)
 endif()
 
